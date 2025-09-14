@@ -76,7 +76,7 @@ La liste complète des options de configuration se trouve dans le fichier [.env.
 - ou utiliser l'image pré-construite
 
   ```bash
-  docker pull luigi311/jellyplex-watched:latest
+  docker pull Turiko313/jellyplex-watched:latest
   ```
 
 #### Avec des variables
@@ -84,7 +84,7 @@ La liste complète des options de configuration se trouve dans le fichier [.env.
 - Exécuter
 
   ```bash
-  docker run --rm -it -e PLEX_TOKEN='SuperSecretToken' luigi311/jellyplex-watched:latest
+  docker run --rm -it -e PLEX_TOKEN='SuperSecretToken' Turiko313/jellyplex-watched:latest
   ```
 
 #### Avec .env
@@ -94,7 +94,7 @@ La liste complète des options de configuration se trouve dans le fichier [.env.
 - Exécuter
 
   ```bash
-   docker run --rm -it -v "$(pwd)/.env:/app/.env" luigi311/jellyplex-watched:latest
+   docker run --rm -it -v "$(pwd)/.env:/app/.env" Turiko313/jellyplex-watched:latest
   ```
 
 ## Dépannage/Problèmes
