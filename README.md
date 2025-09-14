@@ -2,62 +2,60 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/26b47c5db63942f28f02f207f692dc85)](https://www.codacy.com/gh/luigi311/JellyPlex-Watched/dashboard?utm_source=github.com&utm_medium=referral&utm_content=luigi311/JellyPlex-Watched&utm_campaign=Badge_Grade)
 
-Sync watched between jellyfin, plex and emby locally
+Synchronisez l'état de visionnage entre Jellyfin, Plex et Emby localement.
 
 ## Description
 
-Keep in sync all your users watched history between jellyfin, plex and emby servers locally. This uses file names and provider ids to find the correct episode/movie between the two. This is not perfect but it works for most cases. You can use this for as many servers as you want by entering multiple options in the .env plex/jellyfin section separated by commas.
+Maintenez synchronisé l'historique de visionnage de tous vos utilisateurs entre les serveurs Jellyfin, Plex et Emby localement. Ce script utilise les noms de fichiers et les identifiants de fournisseurs (provider IDs) pour trouver le bon épisode/film. Ce n'est pas parfait, mais cela fonctionne dans la plupart des cas. Vous pouvez l'utiliser pour autant de serveurs que vous le souhaitez en saisissant plusieurs options dans la section Plex/Jellyfin du fichier .env, séparées par des virgules.
 
-## Features
+## Fonctionnalités
 
 ### Plex
 
-- \[x] Match via filenames
-- \[x] Match via provider ids
-- \[x] Map usernames
-- \[x] Use single login
-- \[x] One way/multi way sync
-- \[x] Sync watched
-- \[x] Sync in progress
-- \[ ] Sync view dates
+- \[x] Correspondance via les noms de fichiers
+- \[x] Correspondance via les identifiants de fournisseurs
+- \[x] Mapper les noms d'utilisateurs
+- \[x] Utiliser une seule connexion
+- \[x] Synchronisation unidirectionnelle/multidirectionnelle
+- \[x] Synchroniser l'état "vu"
+- \[x] Synchroniser la progression "en cours"
+- \[ ] Synchroniser les dates de visionnage
 
 ### Jellyfin
 
-- \[x] Match via filenames
-- \[x] Match via provider ids
-- \[x] Map usernames
-- \[x] Use single login
-- \[x] One way/multi way sync
-- \[x] Sync watched
-- \[x] Sync in progress
-- \[x] Sync view dates
-
+- \[x] Correspondance via les noms de fichiers
+- \[x] Correspondance via les identifiants de fournisseurs
+- \[x] Mapper les noms d'utilisateurs
+- \[x] Utiliser une seule connexion
+- \[x] Synchronisation unidirectionnelle/multidirectionnelle
+- \[x] Synchroniser l'état "vu"
+- \[x] Synchroniser la progression "en cours"
+- \[x] Synchroniser les dates de visionnage
 
 ### Emby
 
-- \[x] Match via filenames
-- \[x] Match via provider ids
-- \[x] Map usernames
-- \[x] Use single login
-- \[x] One way/multi way sync
-- \[x] Sync watched
-- \[x] Sync in progress
-- \[x] Sync view dates
-
+- \[x] Correspondance via les noms de fichiers
+- \[x] Correspondance via les identifiants de fournisseurs
+- \[x] Mapper les noms d'utilisateurs
+- \[x] Utiliser une seule connexion
+- \[x] Synchronisation unidirectionnelle/multidirectionnelle
+- \[x] Synchroniser l'état "vu"
+- \[x] Synchroniser la progression "en cours"
+- \[x] Synchroniser les dates de visionnage
 
 ## Configuration
 
-Full list of configuration options can be found in the [.env.sample](.env.sample)
+La liste complète des options de configuration se trouve dans le fichier [.env.sample](.env.sample)
 
 ## Installation
 
-### Baremetal
+### Directe (Baremetal)
 
-- [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
+- [Installer uv](https://docs.astral.sh/uv/getting-started/installation/)
 
-- Create a .env file similar to .env.sample; fill in baseurls and tokens, **remember to uncomment anything you wish to use** (e.g., user mapping, library mapping, black/whitelist, etc.). If you want to store your .env file anywhere else or under a different name you can use ENV_FILE variable to specify the location.
+- Créez un fichier .env similaire à .env.sample ; remplissez les baseurls et les tokens, **n'oubliez pas de décommenter tout ce que vous souhaitez utiliser** (par exemple, le mappage d'utilisateurs, le mappage de bibliothèques, les listes noires/blanches, etc.). Si vous souhaitez stocker votre fichier .env ailleurs ou sous un nom différent, vous pouvez utiliser la variable ENV_FILE pour spécifier l'emplacement.
 
-- Run
+- Exécuter
 
   ```bash
   uv run main.py
@@ -69,50 +67,50 @@ Full list of configuration options can be found in the [.env.sample](.env.sample
 
 ### Docker
 
-- Build docker image
+- Construire l'image Docker
 
   ```bash
   docker build -t jellyplex-watched .
   ```
 
-- or use pre-built image
+- ou utiliser l'image pré-construite
 
   ```bash
   docker pull luigi311/jellyplex-watched:latest
   ```
 
-#### With variables
+#### Avec des variables
 
-- Run
+- Exécuter
 
   ```bash
   docker run --rm -it -e PLEX_TOKEN='SuperSecretToken' luigi311/jellyplex-watched:latest
   ```
 
-#### With .env
+#### Avec .env
 
-- Create a .env file similar to .env.sample and set the variables to match your setup
+- Créez un fichier .env similaire à .env.sample et définissez les variables pour qu'elles correspondent à votre configuration.
 
-- Run
+- Exécuter
 
   ```bash
    docker run --rm -it -v "$(pwd)/.env:/app/.env" luigi311/jellyplex-watched:latest
   ```
 
-## Troubleshooting/Issues
+## Dépannage/Problèmes
 
 - Jellyfin
 
-  - Attempt to decode JSON with unexpected mimetype, make sure you enable remote access or add your docker subnet to lan networks in jellyfin settings
+  - "Attempt to decode JSON with unexpected mimetype" : assurez-vous d'activer l'accès à distance ou d'ajouter votre sous-réseau Docker aux réseaux locaux dans les paramètres de Jellyfin.
 
 - Configuration
-  - Do not use quotes around variables in docker compose
-  - If you are not running all 3 supported servers, that is, Plex, Jellyfin, and Emby simultaneously, make sure to comment out the server url and token of the server you aren't using.
+  - N'utilisez pas de guillemets autour des variables dans Docker Compose.
+  - Si vous n'utilisez pas les 3 serveurs pris en charge (Plex, Jellyfin et Emby) simultanément, assurez-vous de commenter l'URL et le token du serveur que vous n'utilisez pas.
 
-## Contributing
+## Contribuer
 
-I am open to receiving pull requests. If you are submitting a pull request, please make sure run it locally for a day or two to make sure it is working as expected and stable.
+Je suis ouvert aux pull requests. Si vous en soumettez une, veuillez vous assurer de l'exécuter localement pendant un jour ou deux pour vérifier qu'elle fonctionne comme prévu et qu'elle est stable.
 
-## License
+## Licence
 
-This is currently under the GNU General Public License v3.0.
+Ce projet est actuellement sous la licence publique générale GNU v3.0.
